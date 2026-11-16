@@ -1,94 +1,52 @@
-name: Nebula Arena - CI/CD Game Server Pipeline
+﻿name: Nebula Arena - CI/CD Game Server Pipeline
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}/game-server
+  IMAGE_NAME: ${{ github.repository }}/nebula-arena-server
 
 jobs:
-  test:
+  unit-tests:
     name: Unit & Integration Tests (pytest)
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Source Code
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-          cache: "pip"
-
-      - name: Install Dependencies
+          python-version: '3.11'
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r server/requirements.txt
           pip install -r serverless/requirements.txt
-
-      - name: Execute Server Unit Tests
+      - name: Run pytest with live server
         run: |
-          PYTHONPATH=server uvicorn app:app --host 127.0.0.1 --port 8080 & sleep 2 && PYTHONPATH=server pytest -v server/tests/
-
-      - name: Execute Serverless Unit Tests
-        run: |
-          pytest -v serverless/test_serverless.py
+          PYTHONPATH=server uvicorn app:app --host 127.0.0.1 --port 8080 &
+          PYTHONPATH=server uvicorn app:app --host 127.0.0.1 --port 18080 &
+          sleep 3
+          PYTHONPATH=server:serverless pytest -v server/tests/ serverless/
 
   build-and-push:
     name: Build & Push Docker Image to GHCR
-    needs: test
+    needs: unit-tests
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       packages: write
-
     steps:
-      - name: Checkout Source Code
-        uses: actions/checkout@v4
-
-      - name: Log in to GitHub Container Registry (GHCR)
+      - uses: actions/checkout@v4
+      - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract Docker metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=sha,format=short
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-
       - name: Build and push Docker image
-        id: build-push
         uses: docker/build-push-action@v5
         with:
           context: ./server
-          file: ./server/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Update Kubernetes Fleet Manifest Image Tag
-        run: |
-          IMAGE_TAG="sha-${GITHUB_SHA::7}"
-          FULL_IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG}"
-          echo "Updating Fleet manifest to image: $FULL_IMAGE"
-          sed -i "s|image: ghcr.io/nebula-arena/game-server:.*|image: ${FULL_IMAGE}|g" k8s/fleet.yaml
-          
-      - name: Commit & Push Updated Manifest
-        if: github.ref == 'refs/heads/main'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add k8s/fleet.yaml
-          git diff --quiet && git diff --staged --quiet || git commit -m "chore(cd): update agones fleet image tag to ${GITHUB_SHA::7}"
-          git push
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }},${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
