@@ -24,10 +24,9 @@ jobs:
           pip install -r serverless/requirements.txt
       - name: Run pytest with live server
         run: |
-          PYTHONPATH=server uvicorn app:app --host 127.0.0.1 --port 8080 &
-          PYTHONPATH=server uvicorn app:app --host 127.0.0.1 --port 18080 &
+          nohup uvicorn server.app:app --host 127.0.0.1 --port 8080 > uvicorn.log 2>&1 &
           sleep 3
-          PYTHONPATH=server:serverless pytest -v server/tests/ serverless/
+          PYTHONPATH=. pytest -v server/tests/test_server.py serverless/test_serverless.py
 
   build-and-push:
     name: Build & Push Docker Image to GHCR
