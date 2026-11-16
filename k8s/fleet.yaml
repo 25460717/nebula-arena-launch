@@ -1,0 +1,61 @@
+apiVersion: "agones.dev/v1"
+kind: Fleet
+metadata:
+  name: nebula-arena-fleet
+  namespace: default
+  labels:
+    app: nebula-arena
+    tier: dedicated-game-server
+spec:
+  replicas: 15
+  scheduling: Packed
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: nebula-arena
+    spec:
+      ports:
+        - name: gameport
+          containerPort: 7654
+          protocol: UDP
+          portPolicy: Dynamic
+        - name: metrics
+          containerPort: 8080
+          protocol: TCP
+          portPolicy: Dynamic
+      health:
+        initialDelaySeconds: 15
+        periodSeconds: 5
+        failureThreshold: 3
+      sdkServer:
+        logLevel: Info
+      template:
+        spec:
+          tolerations:
+            - key: "agones.dev/role"
+              operator: "Equal"
+              value: "gameserver"
+              effect: "NoSchedule"
+          containers:
+            - name: nebula-game-server
+              image: ghcr.io/nebula-arena/game-server:v1.0.0
+              imagePullPolicy: IfNotPresent
+              resources:
+                requests:
+                  memory: "512Mi"
+                  cpu: "500m"
+                limits:
+                  memory: "1024Mi"
+                  cpu: "1000m"
+              env:
+                - name: POD_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.name
+                - name: TICK_RATE
+                  value: "20"

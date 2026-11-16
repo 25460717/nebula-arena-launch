@@ -1,0 +1,245 @@
+{
+  "benchmark_timestamp": "2026-11-16T17:05:32Z",
+  "rampa": [
+    {
+      "ccu": 100,
+      "step_duration_s": 4.13,
+      "p99_tick_ms": 19.44,
+      "allocated_servers": 10,
+      "ready_buffer_servers": 10,
+      "total_fleet_servers": 20,
+      "active_gke_nodes": 4,
+      "avg_api_latency_ms": 1118.93
+    },
+    {
+      "ccu": 250,
+      "step_duration_s": 4.67,
+      "p99_tick_ms": 21.48,
+      "allocated_servers": 25,
+      "ready_buffer_servers": 10,
+      "total_fleet_servers": 35,
+      "active_gke_nodes": 7,
+      "avg_api_latency_ms": 854.96
+    },
+    {
+      "ccu": 500,
+      "step_duration_s": 4.05,
+      "p99_tick_ms": 24.73,
+      "allocated_servers": 50,
+      "ready_buffer_servers": 10,
+      "total_fleet_servers": 60,
+      "active_gke_nodes": 11,
+      "avg_api_latency_ms": 713.35
+    },
+    {
+      "ccu": 750,
+      "step_duration_s": 4.24,
+      "p99_tick_ms": 29.47,
+      "allocated_servers": 75,
+      "ready_buffer_servers": 15,
+      "total_fleet_servers": 90,
+      "active_gke_nodes": 17,
+      "avg_api_latency_ms": 737.05
+    },
+    {
+      "ccu": 1000,
+      "step_duration_s": 3.04,
+      "p99_tick_ms": 33.12,
+      "allocated_servers": 100,
+      "ready_buffer_servers": 20,
+      "total_fleet_servers": 120,
+      "active_gke_nodes": 22,
+      "avg_api_latency_ms": 529.29
+    }
+  ],
+  "pico": [
+    {
+      "second": 1,
+      "gamers_ccu": 1000,
+      "spectators_ccu": 500,
+      "total_ccu": 1500,
+      "allocated_servers": 100,
+      "ready_servers": 20,
+      "scheduled_servers": 2,
+      "active_gke_nodes": 23,
+      "p99_tick_ms": 31.66,
+      "hls_bitrate_kbps": 4500,
+      "egress_cdn_gbps": 2.25
+    },
+    {
+      "second": 2,
+      "gamers_ccu": 1000,
+      "spectators_ccu": 500,
+      "total_ccu": 1500,
+      "allocated_servers": 100,
+      "ready_servers": 20,
+      "scheduled_servers": 2,
+      "active_gke_nodes": 23,
+      "p99_tick_ms": 31.69,
+      "hls_bitrate_kbps": 4500,
+      "egress_cdn_gbps": 2.25
+    },
+    {
+      "second": 3,
+      "gamers_ccu": 1000,
+      "spectators_ccu": 500,
+      "total_ccu": 1500,
+      "allocated_servers": 100,
+      "ready_servers": 20,
+      "scheduled_servers": 0,
+      "active_gke_nodes": 22,
+      "p99_tick_ms": 32.82,
+      "hls_bitrate_kbps": 4500,
+      "egress_cdn_gbps": 2.25
+    },
+    {
+      "second": 4,
+      "gamers_ccu": 1000,
+      "spectators_ccu": 500,
+      "total_ccu": 1500,
+      "allocated_servers": 100,
+      "ready_servers": 20,
+      "scheduled_servers": 1,
+      "active_gke_nodes": 22,
+      "p99_tick_ms": 33.36,
+      "hls_bitrate_kbps": 4500,
+      "egress_cdn_gbps": 2.25
+    },
+    {
+      "second": 5,
+      "gamers_ccu": 1000,
+      "spectators_ccu": 500,
+      "total_ccu": 1500,
+      "allocated_servers": 100,
+      "ready_servers": 20,
+      "scheduled_servers": 1,
+      "active_gke_nodes": 22,
+      "p99_tick_ms": 31.53,
+      "hls_bitrate_kbps": 4500,
+      "egress_cdn_gbps": 2.25
+    },
+    {
+      "second": 6,
+      "gamers_ccu": 1000,
+      "spectators_ccu": 500,
+      "total_ccu": 1500,
+      "allocated_servers": 100,
+      "ready_servers": 20,
+      "scheduled_servers": 1,
+      "active_gke_nodes": 22,
+      "p99_tick_ms": 32.04,
+      "hls_bitrate_kbps": 4500,
+      "egress_cdn_gbps": 2.25
+    },
+    {
+      "second": 7,
+      "gamers_ccu": 1000,
+      "spectators_ccu": 500,
+      "total_ccu": 1500,
+      "allocated_servers": 100,
+      "ready_servers": 20,
+      "scheduled_servers": 0,
+      "active_gke_nodes": 22,
+      "p99_tick_ms": 33.09,
+      "hls_bitrate_kbps": 4500,
+      "egress_cdn_gbps": 2.25
+    },
+    {
+      "second": 8,
+      "gamers_ccu": 1000,
+      "spectators_ccu": 500,
+      "total_ccu": 1500,
+      "allocated_servers": 100,
+      "ready_servers": 20,
+      "scheduled_servers": 2,
+      "active_gke_nodes": 23,
+      "p99_tick_ms": 32.38,
+      "hls_bitrate_kbps": 4500,
+      "egress_cdn_gbps": 2.25
+    },
+    {
+      "second": 9,
+      "gamers_ccu": 1000,
+      "spectators_ccu": 500,
+      "total_ccu": 1500,
+      "allocated_servers": 100,
+      "ready_servers": 20,
+      "scheduled_servers": 2,
+      "active_gke_nodes": 23,
+      "p99_tick_ms": 33.44,
+      "hls_bitrate_kbps": 4500,
+      "egress_cdn_gbps": 2.25
+    },
+    {
+      "second": 10,
+      "gamers_ccu": 1000,
+      "spectators_ccu": 500,
+      "total_ccu": 1500,
+      "allocated_servers": 100,
+      "ready_servers": 20,
+      "scheduled_servers": 1,
+      "active_gke_nodes": 22,
+      "p99_tick_ms": 31.85,
+      "hls_bitrate_kbps": 4500,
+      "egress_cdn_gbps": 2.25
+    }
+  ],
+  "extrapolacion": [
+    {
+      "spectators": 500,
+      "total_egress_gbps": 2.25,
+      "cache_hit_ratio_pct": 96.7,
+      "edge_served_gbps": 2.176,
+      "origin_shield_gbps": 0.074
+    },
+    {
+      "spectators": 1000,
+      "total_egress_gbps": 4.5,
+      "cache_hit_ratio_pct": 97.27,
+      "edge_served_gbps": 4.377,
+      "origin_shield_gbps": 0.123
+    },
+    {
+      "spectators": 2500,
+      "total_egress_gbps": 11.25,
+      "cache_hit_ratio_pct": 98.43,
+      "edge_served_gbps": 11.073,
+      "origin_shield_gbps": 0.177
+    },
+    {
+      "spectators": 5000,
+      "total_egress_gbps": 22.5,
+      "cache_hit_ratio_pct": 99.33,
+      "edge_served_gbps": 22.349,
+      "origin_shield_gbps": 0.151
+    },
+    {
+      "spectators": 7500,
+      "total_egress_gbps": 33.75,
+      "cache_hit_ratio_pct": 99.66,
+      "edge_served_gbps": 33.635,
+      "origin_shield_gbps": 0.115
+    },
+    {
+      "spectators": 10000,
+      "total_egress_gbps": 45.0,
+      "cache_hit_ratio_pct": 99.78,
+      "edge_served_gbps": 44.901,
+      "origin_shield_gbps": 0.099
+    },
+    {
+      "spectators": 15000,
+      "total_egress_gbps": 67.5,
+      "cache_hit_ratio_pct": 99.84,
+      "edge_served_gbps": 67.392,
+      "origin_shield_gbps": 0.108
+    },
+    {
+      "spectators": 20000,
+      "total_egress_gbps": 90.0,
+      "cache_hit_ratio_pct": 99.85,
+      "edge_served_gbps": 89.865,
+      "origin_shield_gbps": 0.135
+    }
+  ]
+}

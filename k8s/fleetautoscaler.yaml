@@ -1,0 +1,19 @@
+apiVersion: "autoscaling.agones.dev/v1"
+kind: FleetAutoscaler
+metadata:
+  name: nebula-arena-fleet-autoscaler
+  namespace: default
+  labels:
+    app: nebula-arena
+spec:
+  fleetName: nebula-arena-fleet
+  policy:
+    type: Buffer
+    buffer:
+      bufferSize: 20%
+      minReplicas: 10
+      maxReplicas: 130
+  sync:
+    type: FixedInterval
+    fixedInterval:
+      seconds: 15

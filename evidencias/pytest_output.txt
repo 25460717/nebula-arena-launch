@@ -1,0 +1,38 @@
+﻿python.exe : C:\Users\josea\AppData\Local\Programs\Python\Python314\Lib\site-packages\pytest_asyncio\plugin.py:306: 
+PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+En línea: 1 Carácter: 211
++ ... na-launch"; & "C:\Users\josea\AppData\Local\Programs\Python\Python314 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\josea\...cope" is unset.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+The event loop scope for asynchronous fixtures will default to the fixture scope. Future versions of pytest-asyncio 
+will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope 
+explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", 
+"module", "package", "session". Set it to "fixture-scope" to keep the current behavior.
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts =============================
+platform win32 -- Python 3.14.0, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\josea\AppData\Local\Programs\Python\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\josea\AppData\Local\Programs\antigravity
+plugins: platformdirs-4.14.5, anyio-4.16.0, locust-2.47.0, asyncio-1.5.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 8 items
+
+nebula-arena-launch/server/tests/test_server.py::test_health_endpoint PASSED [ 12%]
+nebula-arena-launch/server/tests/test_server.py::test_room_allocation_on_join PASSED [ 25%]
+nebula-arena-launch/server/tests/test_server.py::test_capacity_limit_server_full PASSED [ 37%]
+nebula-arena-launch/server/tests/test_server.py::test_player_leave_and_ready_transition PASSED [ 50%]
+nebula-arena-launch/server/tests/test_server.py::test_metrics_endpoint PASSED [ 62%]
+nebula-arena-launch/serverless/test_serverless.py::test_leaderboard_get_top10 PASSED [ 75%]
+nebula-arena-launch/serverless/test_serverless.py::test_leaderboard_post_update_elo PASSED [ 87%]
+nebula-arena-launch/serverless/test_serverless.py::test_leaderboard_post_missing_player PASSED [100%]
+
+============================== warnings summary ===============================
+..\Python\Python314\Lib\site-packages\_pytest\config\__init__.py:1507
+  C:\Users\josea\AppData\Local\Programs\Python\Python314\Lib\site-packages\_pytest\config\__init__.py:1507: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; anyio
+    self._mark_plugins_for_rewrite(hook, disable_autoload)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 8 passed, 1 warning in 0.46s =========================
