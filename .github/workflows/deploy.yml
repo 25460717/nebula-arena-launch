@@ -32,7 +32,7 @@ jobs:
 
       - name: Execute Server Unit Tests
         run: |
-          pytest -v server/tests/
+          PYTHONPATH=server uvicorn app:app --host 127.0.0.1 --port 8080 & sleep 2 && PYTHONPATH=server pytest -v server/tests/
 
       - name: Execute Serverless Unit Tests
         run: |
